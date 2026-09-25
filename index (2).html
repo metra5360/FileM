@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Передача файлів між пристроями</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <h1>📡 Файли між пристроями</h1>
+    <p class="subtitle">Пряма передача P2P — без хмари, без обмежень на розмір і тип файлу</p>
+  </header>
+
+  <main class="grid">
+
+    <!-- ВІДПРАВНИК -->
+    <section class="card" id="send-card">
+      <h2>1. Надіслати файл(и)</h2>
+
+      <label class="dropzone" id="dropzone">
+        <input type="file" id="fileInput" multiple hidden>
+        <span id="dropzoneText">Натисни або перетягни файли сюди</span>
+      </label>
+
+      <ul class="file-list" id="pickedFiles"></ul>
+
+      <button class="btn primary" id="startShareBtn" disabled>Почати роздачу</button>
+
+      <div class="share-info hidden" id="shareInfo">
+        <p>Покажи цей QR-код на другому пристрої або передай код вручну:</p>
+        <canvas id="qrCanvas"></canvas>
+        <div class="code-row">
+          <input type="text" id="peerIdField" readonly>
+          <button class="btn small" id="copyLinkBtn">Копіювати посилання</button>
+        </div>
+        <p class="hint" id="connCount">Очікуємо підключення…</p>
+      </div>
+    </section>
+
+    <!-- ОТРИМУВАЧ -->
+    <section class="card" id="receive-card">
+      <h2>2. Отримати файл(и)</h2>
+
+      <div class="join-row">
+        <input type="text" id="joinIdField" placeholder="Встав код з'єднання">
+        <button class="btn primary" id="joinBtn">Підключитись</button>
+      </div>
+      <p class="hint">Або відскануй QR-код камерою — код підставиться сам.</p>
+
+      <ul class="file-list" id="incomingFiles">
+        <li class="placeholder">Файли з'являться тут після підключення</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="log" id="log"></div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
